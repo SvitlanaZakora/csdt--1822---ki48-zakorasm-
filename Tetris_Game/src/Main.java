@@ -55,7 +55,7 @@ public class Main {
     }
 
 
-    private static char[][] createNewField(){
+    public static char[][] createNewField(){
         char[][] field = new char[HIGH][LENGTH];
         for (int i=0; i<HIGH; i++){
             for (int j=0; j<LENGTH; j++){
@@ -164,13 +164,13 @@ public class Main {
         return true;
     }
 
-    private static void saveField(char[][] field){
+    public static void saveField(char[][] field){
         FIELD = deepCopy(field);
     }
 
     private static char[][] deepCopy(char[][] field){
-        char[][] newField = new char[HIGH][LENGTH];
-        for (int i=0; i<HIGH; i++){
+        char[][] newField = new char[field.length][field[0].length];
+        for (int i=0; i<newField.length; i++){
             newField[i] = field[i].clone();
         }
         return newField;
