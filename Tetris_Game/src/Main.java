@@ -1,9 +1,13 @@
+import org.json.JSONArray;
+
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-    final static int LENGTH = 9;
-    final static int HIGH = 16;
+    public final static int LENGTH = 9;
+    public final static int HIGH = 16;
     static char[][] FIELD;
     public static void main(String[] args) {
         FIELD = createNewField();
@@ -40,6 +44,7 @@ public class Main {
             printField(FIELD);
             validateRows();
         }
+        createJSON();
 
     }
 
@@ -174,5 +179,23 @@ public class Main {
             newField[i] = field[i].clone();
         }
         return newField;
+    }
+
+    private static void createJSON(){
+        JSONArray jsonArray = new JSONArray();
+        for (char[] ca : FIELD) {
+            JSONArray arr = new JSONArray();
+            for (char c : ca) {
+                arr.put(c);
+            }
+            jsonArray.put(arr);
+        }
+        try (FileWriter file = new FileWriter("field.json")) {
+            file.write(jsonArray.toString());
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
