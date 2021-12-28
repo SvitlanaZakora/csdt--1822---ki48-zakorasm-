@@ -18,4 +18,5 @@ public class test {
         Assert.assertEquals(Main.FIELD[0].length, 1);
     }
 
+
 }
